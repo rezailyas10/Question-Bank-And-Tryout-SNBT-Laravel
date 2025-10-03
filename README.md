@@ -25,13 +25,11 @@ Aplikasi Tryout SNBT berbasis Laravel dengan database <b>MySQL</b>.
 
 <p><b>🚀 Cara Menjalankan Project di Localhost</b></p>
 
-<p>1. Install dependency Laravel dengan Composer:</p>
-```bash
+# Install dependency Laravel
 composer install
 
-<p>2. Buat database di <b>phpMyAdmin</b> lalu beri nama sesuai dengan nama database pada file <code>.env</code>.  
-Untuk memastikan kesesuaian, cek bagian konfigurasi berikut di file <code>.env</code>:</p>
-```bash
+# Buat database di phpMyAdmin sesuai nama database di file .env
+# Contoh konfigurasi .env:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -39,25 +37,18 @@ DB_DATABASE=snbt
 DB_USERNAME=root
 DB_PASSWORD=
 
-<p>3. Sesuaikan DB_USERNAME dan DB_PASSWORD dengan server lokal Anda.
-Default Laravel biasanya root tanpa password</p>
-```bash
+# Sesuaikan DB_USERNAME dan DB_PASSWORD dengan server lokal Anda (default root tanpa password)
+
+# Atur konfigurasi Laravel di .env
 APP_ENV=local
 APP_KEY=base64:s3lQKM21auTjQ296GahD4OJA1bBA2HkzDRirdlq/bjY=
 APP_DEBUG=true
 APP_URL=http://localhost
 
-<p>4. Generate key, buat storage link, dan jalankan server Laravel</p>
-```bash
-php artisan key:generate
-```bash
-php artisan storage:link
-```bash
-php artisan serve
+# Generate key aplikasi, buat symbolic link storage, dan jalankan server Laravel
+php artisan key:generate && php artisan storage:link && php artisan serve
 
-<p>5. Buka aplikasi di browser</p>
-```bash
-http://localhost:8000
+# Akses aplikasi di browser: http://localhost:8000
 
 
 ## License
