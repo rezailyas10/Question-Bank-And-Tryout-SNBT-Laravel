@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Detail Try Out</title>
+
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- AOS CSS -->
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+
+        <!-- Custom CSS -->
+        <link href="{{ url('/style/main.css') }}" rel="stylesheet" />
+
+        <style>
+            :root {
+                --primary: #4861ec;
+                --secondary: #6c757d;
+                --success: #2ecc71;
+                --info: #3498db;
+                --warning: #f39c12;
+                --danger: #e74c3c;
+                --light: #f8f9fa;
+                --dark: #343a40;
+            }
+
+            body {
+                background-color: #f8f9fa;
+                font-family: "Poppins", sans-serif;
+            }
+
+            .navbar {
+                background-color: var(--primary);
+                color: white;
+            }
+
+            .navbar-brand {
+                color: white;
+                font-weight: 600;
+            }
+
+            .navbar-icons {
+                display: flex;
+                align-items: center;
+            }
+
+            .navbar-icon {
+                color: white;
+                margin-left: 15px;
+                font-size: 1.2rem;
+            }
+
+            .detail-header {
+                background-color: white;
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            .detail-title {
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            .detail-subtitle {
+                color: #777;
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+
+            .stats-container {
+                display: flex;
+                justify-content: space-between;
+                margin: 20px 0;
+            }
+
+            .stat-item {
+                text-align: center;
+            }
+
+            .stat-value {
+                font-weight: 600;
+                font-size: 1.2rem;
+                color: var(--primary);
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+                color: #777;
+            }
+
+            .subject-container {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                margin-bottom: 15px;
+                overflow: hidden;
+            }
+
+            .subject-header {
+                padding: 15px;
+                border-bottom: 1px solid #f0f0f0;
+                font-weight: 600;
+            }
+
+            .subject-item {
+                padding: 15px;
+                border-bottom: 1px solid #f0f0f0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .subject-item:last-child {
+                border-bottom: none;
+            }
+
+            .time-indicator {
+                display: flex;
+                align-items: center;
+                color: #777;
+                font-size: 0.9rem;
+            }
+
+            .university-selection {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .university-title {
+                font-weight: 600;
+                margin-bottom: 15px;
+                color: var(--primary);
+                border-bottom: 2px solid var(--primary);
+                padding-bottom: 5px;
+                display: inline-block;
+            }
+
+            .university-description {
+                color: #555;
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+
+            .custom-select {
+                width: 100%;
+                padding: 10px 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                margin-bottom: 10px;
+                background-color: #f9f9f9;
+            }
+
+            .mascot-container {
+                display: flex;
+                align-items: center;
+                background-color: #e9f0ff;
+                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .mascot-image {
+                flex: 0 0 60px;
+                height: 60px;
+                background-color: #cfd9f0;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+            }
+
+            .mascot-text {
+                flex: 1;
+                font-size: 0.9rem;
+                color: var(--primary);
+            }
+
+            .footer-note {
+                text-align: center;
+                padding: 20px 0;
+                color: #777;
+                font-size: 0.9rem;
+            }
+
+            .register-button {
+                display: block;
+                width: 100%;
+                padding: 12px;
+                background-color: var(--primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-weight: 600;
+                margin-top: 15px;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            .subject-duration {
+                display: flex;
+                gap: 10px;
+            }
+
+            .duration-box {
+                background-color: #f0f0f0;
+                border-radius: 5px;
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                display: flex;
+                align-items: center;
+            }
+
+            .duration-icon {
+                margin-right: 5px;
+                color: var(--primary);
+            }
+
+            @media (max-width: 768px) {
+                .stats-container {
+                    flex-wrap: wrap;
+                }
+
+                .stat-item {
+                    flex: 0 0 50%;
+                    margin-bottom: 15px;
+                }
+
+                .subject-duration {
+                    flex-direction: column;
+                    gap: 5px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar p-3">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Detail Try Out
+                </a>
+                <div class="navbar-icons">
+                    <span class="navbar-icon">❤️</span>
+                    <span class="navbar-icon">🔔</span>
+                    <span class="navbar-icon">1,530</span>
+                    <span class="navbar-icon">👤</span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="detail-header" data-aos="fade-down">
+            <div class="container">
+                <div class="detail-title">Tryout UTBK 2024-01 - SBMPTN</div>
+                <div class="detail-subtitle">
+                    4 April 2023, 07:00AM till 8 April 2023, 18:00PM
+                </div>
+
+                <div class="row stats-container">
+                    <div class="col-6 col-md-3 stat-item">
+                        <div class="stat-value">TD dimulai</div>
+                        <div class="stat-label">Status</div>
+                    </div>
+                    <div class="col-6 col-md-3 stat-item">
+                        <div class="stat-value">195 menit</div>
+                        <div class="stat-label">Total Waktu</div>
+                    </div>
+                    <div class="col-6 col-md-3 stat-item">
+                        <div class="stat-value">155 soal</div>
+                        <div class="stat-label">Jumlah Soal</div>
+                    </div>
+                    <div class="col-6 col-md-3 stat-item">
+                        <div class="stat-value">560 poin</div>
+                        <div class="stat-label">Nilai Max</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <!-- TPS Subject -->
+            <div
+                class="subject-container"
+                data-aos="fade-up"
+                data-aos-delay="100"
+            >
+                <div class="subject-header">Tes Potensi Skolastik</div>
+
+                <div class="subject-item">
+                    <div>Kemampuan Penalaran Umum</div>
+                    <div class="subject-duration">
+                        <div class="duration-box">
+                            <i class="fas fa-clock duration-icon"></i> 25 menit
+                        </div>
+                        <div class="duration-box">
+                            <i class="fas fa-list duration-icon"></i> 20 soal
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-item">
+                    <div>Pengetahuan dan Pemahaman Umum</div>
+                    <div class="subject-duration">
+                        <div class="duration-box">
+                            <i class="fas fa-clock duration-icon"></i> 15 menit
+                        </div>
+                        <div class="duration-box">
+                            <i class="fas fa-list duration-icon"></i> 10 soal
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-item">
+                    <div>Pengertahuan Kuantitatif</div>
+                    <div class="subject-duration">
+                        <div class="duration-box">
+                            <i class="fas fa-clock duration-icon"></i> 25 menit
+                        </div>
+                        <div class="duration-box">
+                            <i class="fas fa-list duration-icon"></i> 20 soal
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-item">
+                    <div>Kemampuan Memahami Bacaan dan Menulis</div>
+                    <div class="subject-duration">
+                        <div class="duration-box">
+                            <i class="fas fa-clock duration-icon"></i> 30 menit
+                        </div>
+                        <div class="duration-box">
+                            <i class="fas fa-list duration-icon"></i> 25 soal
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TKA Subject -->
+            <div
+                class="subject-container"
+                data-aos="fade-up"
+                data-aos-delay="200"
+            >
+                <div class="subject-header">Tes Literasi Bahasa</div>
+
+                <div class="subject-item">
+                    <div>Literasi dalam Bahasa Indonesia</div>
+                    <div class="subject-duration">
+                        <div class="duration-box">
+                            <i class="fas fa-clock duration-icon"></i> 22.5
+                            menit
+                        </div>
+                        <div class="duration-box">
+                            <i class="fas fa-list duration-icon"></i> 15 soal
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-item">
+                    <div>Literasi dalam Bahasa Inggris</div>
+                    <div class="subject-duration">
+                        <div class="duration-box">
+                            <i class="fas fa-clock duration-icon"></i> 22.5
+                            menit
+                        </div>
+                        <div class="duration-box">
+                            <i class="fas fa-list duration-icon"></i> 15 soal
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mathematics Subject -->
+            <div
+                class="subject-container"
+                data-aos="fade-up"
+                data-aos-delay="300"
+            >
+                <div class="subject-header">Tes Penalaran Matematika</div>
+
+                <div class="subject-item">
+                    <div>Matematika</div>
+                    <div class="subject-duration">
+                        <div class="duration-box">
+                            <i class="fas fa-clock duration-icon"></i> 42.5
+                            menit
+                        </div>
+                        <div class="duration-box">
+                            <i class="fas fa-list duration-icon"></i> 20 soal
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- University Selection -->
+            <div
+                class="university-selection"
+                data-aos="fade-up"
+                data-aos-delay="400"
+            >
+                <div class="university-title">Target Jurusan</div>
+                <div class="university-description">
+                    Klik untuk menetukan jalur juik. Tujuan halaman tidak akan
+                    terkirim apabila jurusan belum dipilih. Kamu dapat mengisi
+                    ini nanti.
+                </div>
+
+                <select class="custom-select mb-3">
+                    <option selected>INSTITUT TEKNOLOGI BANDUNG</option>
+                    <option>UNIVERSITAS INDONESIA</option>
+                    <option>UNIVERSITAS GADJAH MADA</option>
+                </select>
+
+                <select class="custom-select">
+                    <option selected>
+                        FAK. TEKNIK PERTANIAN & PERINDUSTRIAN (FTPP)
+                    </option>
+                    <option>FAK. TEKNIK ELEKTRO</option>
+                    <option>FAK. ILMU KOMPUTER</option>
+                </select>
+
+                <div class="mascot-container mt-3">
+                    <div class="mascot-image">
+                        <i class="fas fa-robot fa-2x text-primary"></i>
+                    </div>
+                    <div class="mascot-text">
+                        Jurusan yang kamu pilih akan secara otomatis terprogram
+                        di Chatbot.
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-note" data-aos="fade-up" data-aos-delay="500">
+                I had Try Out eken kemarin pada:
+                <br />
+                <strong>9 April 2023</strong>
+            </div>
+
+            <a
+                href="#"
+                class="register-button"
+                data-aos="fade-up"
+                data-aos-delay="600"
+                >Daftar Sekarang</a
+            >
+        </div>
+
+        <!-- Scripts -->
+        <script
+            src="https://kit.fontawesome.com/a076d05399.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="/vendor/jquery/jquery.slim.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 800,
+                once: true,
+            });
+        </script>
+        <script src="/script/navbar-scroll.js"></script>
+    </body>
+</html>

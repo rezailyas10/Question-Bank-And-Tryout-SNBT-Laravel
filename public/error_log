@@ -1,0 +1,7 @@
+[02-Jul-2025 12:53:08 Asia/Jakarta] PHP Fatal error:  Cannot redeclare App\Http\Controllers\DashboardSettingController::update() in /home/tryout/banksoalta/app/Http/Controllers/DashboardSettingController.php on line 66
+[08-Jul-2025 14:32:42 Asia/Jakarta] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home/tryout/banksoalta/app/Http/Controllers/GoogleController.php on line 7
+[08-Jul-2025 14:36:32 Asia/Jakarta] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home/tryout/banksoalta/app/Http/Controllers/GoogleController.php on line 7
+[08-Jul-2025 14:37:59 Asia/Jakarta] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home/tryout/banksoalta/app/Http/Controllers/GoogleController.php on line 7
+[08-Jul-2025 15:44:27 Asia/Jakarta] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home/tryout/banksoalta/app/Http/Controllers/GoogleController.php on line 7
+[15-Jul-2025 18:53:23 Asia/Jakarta] PHP Fatal error:  Trait "App\Http\Controllers\Admin\Illuminate\Http\Request" not found in /home/tryout/banksoalta/app/Http/Controllers/Admin/TryoutController.php on line 19
+[14-Aug-2025 12:04:33 Asia/Jakarta] PHP Fatal error:  Cannot redeclare App\Http\Controllers\Admin\TryoutScoreController::detailedScores() in /home/tryout/banksoalta/app/Http/Controllers/Admin/TryoutScoreController.php on line 890

@@ -1,0 +1,25 @@
+cara run nya
+composer install
+taro db nya di phpMyAdmin, kasih nama database sesusai dengan nama filenya, untuk pengecekan kesesuain ta di file .env di bagian DB_DATABASE:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=snbt
+DB_USERNAME=root
+DB_PASSWORD=
+
+untuk username dan password disesuaikan engan web server anda
+
+lalu untuk ngerun di localhost, edit pada bagian ini
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:s3lQKM21auTjQ296GahD4OJA1bBA2HkzDRirdlq/bjY=
+APP_DEBUG=true
+APP_URL=https://tryout.iti.ac.id
+
+yang APP_URL ganti localhost
+APP_URL=localhost
+
+php artisan key:generate
+php artisan storage:link
+php artisan serve

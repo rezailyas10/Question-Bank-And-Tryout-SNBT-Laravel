@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bank Soal</title>
+        <!-- Bootstrap 5.3 CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <!-- AOS CSS -->
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+        <!-- Custom CSS -->
+        <style>
+            :root {
+                --primary-blue: #3174d4;
+                --light-gray: #f5f7fa;
+            }
+
+            body {
+                background-color: var(--light-gray);
+                font-family: Arial, sans-serif;
+            }
+
+            .navbar {
+                background-color: var(--primary-blue);
+                color: white;
+                padding: 15px 0;
+            }
+
+            .brand-text {
+                color: white;
+                font-weight: bold;
+                font-size: 1.5rem;
+                text-decoration: none;
+            }
+
+            .stats-card {
+                background-color: white;
+                border-radius: 12px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            }
+
+            .tabs-container {
+                margin-bottom: 15px;
+            }
+
+            .tab-active {
+                border-bottom: 3px solid var(--primary-blue);
+                color: var(--primary-blue);
+                font-weight: bold;
+            }
+
+            .tab-button {
+                padding: 10px 0;
+                text-decoration: none;
+                color: #333;
+                margin-right: 20px;
+                display: inline-block;
+            }
+
+            .search-box {
+                background-color: var(--light-gray);
+                border-radius: 8px;
+                padding: 10px;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .search-input {
+                border: none;
+                background: transparent;
+                width: 100%;
+                outline: none;
+                color: #777;
+            }
+
+            .subject-card {
+                background-color: white;
+                border-radius: 12px;
+                text-align: center;
+                padding: 20px 10px;
+                margin-bottom: 20px;
+                transition: transform 0.3s ease;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            }
+
+            .subject-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .subject-icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 15px;
+                display: block;
+            }
+
+            .btn-leaderboard {
+                background-color: var(--primary-blue);
+                color: white;
+                border-radius: 20px;
+                padding: 6px 15px;
+                font-size: 0.85rem;
+            }
+
+            .dropdown-toggle {
+                background-color: #fff;
+                color: #333;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                cursor: pointer;
+            }
+
+            .progress-title {
+                color: #6c757d;
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+
+            .stats-number {
+                font-size: 1.1rem;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .rank-text {
+                color: #6c757d;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="brand-text">Bank Soal</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container mt-4">
+            <!-- Stats Card -->
+            <div class="stats-card" data-aos="fade-up" data-aos-duration="500">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h5 class="progress-title">Progres Minggu Ini</h5>
+                        <p class="mb-1">
+                            Jumlah soal yang dikerjakan:
+                            <span class="stats-number">10</span>
+                        </p>
+                        <p class="mb-0">
+                            Peringkatmu: <span class="stats-number">1566</span
+                            ><span class="rank-text">/1727</span>
+                        </p>
+                    </div>
+                    <div class="col-4 text-end">
+                        <img
+                            src="/api/placeholder/80/60"
+                            alt="Statistics Icon"
+                            class="mb-2"
+                        />
+                        <button class="btn btn-leaderboard">
+                            Lihat Leaderboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div
+                class="tabs-container"
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="100"
+            >
+                <a href="#" class="tab-button tab-active">Bank Soal</a>
+                <a href="#" class="tab-button">Riwayat</a>
+            </div>
+
+            <!-- Search Box -->
+            <div
+                class="search-box"
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="200"
+            >
+                <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Cari judul atau kode soal..."
+                />
+                <span class="ms-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="#6c757d"
+                        class="bi bi-search"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                        />
+                    </svg>
+                </span>
+            </div>
+
+            <!-- Filter Options -->
+            <div
+                class="d-flex justify-content-between align-items-center mb-3"
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="300"
+            >
+                <h5 class="mb-0">Bank Soal Pelajaran</h5>
+                <div class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        id="dropdownMenu"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Default
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-chevron-down ms-2"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                            />
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                        <li><a class="dropdown-item" href="#">Default</a></li>
+                        <li><a class="dropdown-item" href="#">Terbaru</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">Terpopuler</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Subject Grid -->
+            <div
+                class="row"
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="400"
+            >
+                <!-- Fisika -->
+                <div class="col-6 col-md-3">
+                    <div class="subject-card">
+                        <div
+                            style="
+                                background-color: #f9a9be;
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 12px;
+                                margin: 0 auto 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#FFF"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M12 2v8l4-4M12 2v8l-4-4M4 15h16M8 22l4-4 4 4"
+                                />
+                            </svg>
+                        </div>
+                        <h6>Fisika</h6>
+                    </div>
+                </div>
+
+                <!-- Kimia -->
+                <div class="col-6 col-md-3">
+                    <div class="subject-card">
+                        <div
+                            style="
+                                background-color: #ffd166;
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 12px;
+                                margin: 0 auto 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#FFF"
+                                stroke-width="2"
+                            >
+                                <rect x="3" y="3" width="6" height="6" rx="1" />
+                                <rect
+                                    x="15"
+                                    y="3"
+                                    width="6"
+                                    height="6"
+                                    rx="1"
+                                />
+                                <rect
+                                    x="3"
+                                    y="15"
+                                    width="6"
+                                    height="6"
+                                    rx="1"
+                                />
+                                <rect
+                                    x="15"
+                                    y="15"
+                                    width="6"
+                                    height="6"
+                                    rx="1"
+                                />
+                            </svg>
+                        </div>
+                        <h6>Kimia</h6>
+                    </div>
+                </div>
+
+                <!-- Biologi -->
+                <div class="col-6 col-md-3">
+                    <div class="subject-card">
+                        <div
+                            style="
+                                background-color: #9fd356;
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 12px;
+                                margin: 0 auto 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#FFF"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M18 4c-2 0-4 1-5 2-1-1-3-2-5-2S2 5 2 8v14c0 .6.4 1 1 1h7V9c0-.6.4-1 1-1h2c.6 0 1 .4 1 1v14h7c.6 0 1-.4 1-1V8c0-3-4-4-8-4z"
+                                />
+                            </svg>
+                        </div>
+                        <h6>Biologi</h6>
+                    </div>
+                </div>
+
+                <!-- Matematika -->
+                <div class="col-6 col-md-3">
+                    <div class="subject-card">
+                        <div
+                            style="
+                                background-color: #71cddd;
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 12px;
+                                margin: 0 auto 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#FFF"
+                                stroke-width="2"
+                            >
+                                <polygon
+                                    points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"
+                                />
+                                <line x1="8" y1="2" x2="8" y2="18" />
+                                <line x1="16" y1="6" x2="16" y2="22" />
+                            </svg>
+                        </div>
+                        <h6>Matematika</h6>
+                    </div>
+                </div>
+
+                <!-- Matematika IPA -->
+                <div class="col-6 col-md-3">
+                    <div class="subject-card">
+                        <div
+                            style="
+                                background-color: #90a8ed;
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 12px;
+                                margin: 0 auto 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#FFF"
+                                stroke-width="2"
+                            >
+                                <path d="M5 12h14M5 5v14M19 5v14" />
+                                <path d="M5 19L19 5" />
+                            </svg>
+                        </div>
+                        <h6>Matematika IPA</h6>
+                    </div>
+                </div>
+
+                <!-- Sejarah Wajib -->
+                <div class="col-6 col-md-3">
+                    <div class="subject-card">
+                        <div
+                            style="
+                                background-color: #d4b190;
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 12px;
+                                margin: 0 auto 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#FFF"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                                />
+                            </svg>
+                        </div>
+                        <h6>Sejarah Wajib</h6>
+                    </div>
+                </div>
+
+                <!-- Bahasa Inggris -->
+                <div class="col-6 col-md-3">
+                    <div class="subject-card">
+                        <div
+                            style="
+                                background-color: #a388e8;
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 12px;
+                                margin: 0 auto 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#FFF"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                                />
+                            </svg>
+                        </div>
+                        <h6>Bahasa Inggris</h6>
+                    </div>
+                </div>
+
+                <!-- Bahasa Indonesia -->
+                <div class="col-6 col-md-3">
+                    <div class="subject-card">
+                        <div
+                            style="
+                                background-color: #f9a28e;
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 12px;
+                                margin: 0 auto 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#FFF"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+                                />
+                            </svg>
+                        </div>
+                        <h6>Bahasa Indonesia</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS and Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            // Initialize AOS
+            AOS.init();
+
+            // For navbar scroll behavior
+            document.addEventListener("DOMContentLoaded", function () {
+                const navbar = document.querySelector(".navbar");
+
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 50) {
+                        navbar.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
+                    } else {
+                        navbar.style.boxShadow = "none";
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
